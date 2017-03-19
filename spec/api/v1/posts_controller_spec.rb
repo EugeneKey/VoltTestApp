@@ -96,4 +96,45 @@ describe Api::V1::PostsController do
     end
 
   end
+
+  describe 'GET /show' do
+    let!(:post) { create(:post) }
+
+    context 'unauthorized' do
+      it 'returns 401 status if there is no access_token' do
+        get "/api/v1/posts/#{post.id}", params: { format: :json }
+        expect(response).to have_http_status :unauthorized
+      end
+
+      it 'returns 401 status if access_token not valid' do
+        get "/api/v1/posts/#{post.id}", params: { format: :json, access_token: '1234' }
+        expect(response).to have_http_status :unauthorized
+      end
+    end
+
+    context 'authorized' do
+      let(:access_token) { create(:access_token) }
+
+      before { get "/api/v1/posts/#{post.id}", params: { format: :json, access_token: access_token.token} }
+
+      it 'returns 200 status' do
+        expect(response).to have_http_status :success
+      end
+
+      %w(id title body published_at author_nickname).each do |attr|
+        it "contains #{attr}" do
+          expect(response.body).to be_json_eql(
+            post.send(attr.to_sym).to_json
+          ).at_path("#{attr}")
+        end
+      end
+
+      %w(created_at updated_at user_id).each do |attr|
+        it "does not contains #{attr}" do
+          expect(response.body).not_to have_json_path("#{attr}")
+        end
+      end
+    end
+
+  end
 end
