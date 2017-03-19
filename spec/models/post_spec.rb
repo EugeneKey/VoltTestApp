@@ -31,4 +31,14 @@ RSpec.describe Post, type: :model do
     end
   end
 
+  it 'scope by published_at DESC' do
+    time = Time.now
+    first = create(:post, published_at: 2.hours.ago.time)
+    second = create(:post, published_at: time)
+    create(:post, published_at: 1.hours.ago.time)
+
+    expect(second.id).to eq Post.first.id
+    expect(first.id).to eq Post.last.id
+  end
+
 end

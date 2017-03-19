@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   validates :title, :body, :user_id, presence: true
   delegate :nickname, to: :author, prefix: true
 
+  default_scope { order(published_at: :desc) }
+
   private
 
   def valid_published_at
