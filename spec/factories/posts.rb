@@ -1,8 +1,14 @@
 FactoryGirl.define do
   factory :post do
-    title "MyString"
-    body "MyString"
-    published_at "2017-03-17 21:49:34"
-    user nil
+    association :author
+    sequence(:title) { |i| "Title Post #{i}" }
+    body "Body Post"
+    published_at { Time.now }
+  end
+
+  factory :invalid_post, class: 'Post' do
+    association :author
+    titile nil
+    body nil
   end
 end

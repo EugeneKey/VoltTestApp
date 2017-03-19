@@ -1,5 +1,13 @@
 class Post < ApplicationRecord
-  belongs_to :author, class_name: 'User', foreign_key: 'user_id'
+  before_validation :valid_published_at
 
-  validates :title, :body, :published_at, presence: true
+  belongs_to :author, class_name: 'User', foreign_key: 'user_id'
+  validates :title, :body, :user_id, presence: true
+  delegate :nickname, to: :author, prefix: true
+
+  private
+
+  def valid_published_at
+    self.published_at = Time.now unless published_at
+  end
 end

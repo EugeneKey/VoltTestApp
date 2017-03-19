@@ -34,6 +34,15 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
 gem 'doorkeeper'
+gem 'active_model_serializers'
+
+# Optimized JSON: fast JSON parser and Object marshaller
+gem 'oj'
+gem 'oj_mimic_json'
+
+gem 'responders'
+
+gem 'kaminari'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -57,6 +66,7 @@ end
 
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'json_spec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
