@@ -1,0 +1,13 @@
+= form_for current_user, url: profiles_avatar_update_path, html: { multipart: true }, remote: true do |f|
+  .fileinput.fileinput-new data-provides="fileinput"
+    .fileinput-new.thumbnail style=("width: 310px; height: 310px;")
+      = image_tag current_user.avatar.url(:medium)
+    .fileinput-preview.fileinput-exists.thumbnail data-trigger="fileinput" style=("width: 310px; height: 310px;")
+    .flex
+      div
+        span.btn.btn-default.btn-file
+          span.fileinput-new Select avatar
+          span.fileinput-exists Change
+          = f.file_field :avatar, accept: "image/jpeg,image/png"
+        a.btn.btn-default.fileinput-exists data-dismiss="fileinput" href="#"  Remove
+      = f.submit 'Save avatar', class: "btn btn-default fileinput-exists"

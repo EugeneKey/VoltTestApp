@@ -22,6 +22,11 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# slim template language for HTML
+gem 'slim-rails'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass-extras'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -44,6 +49,11 @@ gem 'oj_mimic_json'
 gem 'responders'
 
 gem 'kaminari'
+
+gem "paperclip", "~> 5.0.0"
+gem 'aws-sdk', '~> 2.3.0'
+# AJAX file uploads with jQuery
+gem 'remotipart', '~> 1.2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

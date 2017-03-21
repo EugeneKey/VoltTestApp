@@ -1,0 +1,10 @@
+$(".alert").remove()
+<% if current_user.errors.present? %>
+    <% current_user.errors.full_messages.each do |message| %>
+        $('.main').prepend('<div class="alert alert-danger alert-dismissable"><button name="button" type="button" class="close" data-dismiss="alert">×</button><%= j message %></div>');
+<% end %>
+<% else %>
+    $('.avatar-form').html('<%= j render partial: 'profiles/avatar_form' %>');
+    $('.main').prepend('<div class="alert alert-success alert-dismissable"><button name="button" type="button" class="close" data-dismiss="alert">×</button>Avatar updated</div>');
+    $('.avatar-link > img').attr("src", '<%= j current_user.avatar.url(:thumb) %>');
+<% end %>

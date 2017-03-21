@@ -1,0 +1,14 @@
+// Place all the styles related to the profiles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+.menu-profile {
+  display: flex !important;
+  align-items: center;
+}
+.avatar-link {
+  padding: 0px !important;
+}

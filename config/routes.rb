@@ -9,4 +9,9 @@ Rails.application.routes.draw do
       resources :posts, only: [:create, :show, :index]
     end
   end
+
+  namespace :profiles do
+    get :me
+    patch :avatar_update
+  end
 end
