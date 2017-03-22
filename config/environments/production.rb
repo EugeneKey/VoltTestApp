@@ -92,6 +92,18 @@ Rails.application.configure do
       access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
       secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
       s3_region: ENV.fetch('AWS_REGION'),
-    }
+    },
+    url: ':s3_domain_url',
+    path: '/:class/:attachment/:id_partition/:style/:filename',
+  }
+
+  config.action_mailer.smtp_settings = {
+        address: ENV['SMTP_SERVER'],
+        port: ENV['SMTP_PORT'],
+        domain: ENV['SMTP_DOMAIN'],
+        user_name: ENV['SMTP_AUTH_LOGIN'],
+        password: ENV['SMTP_AUTH_PASS'],
+        authentication: :plain,
+        enable_starttls_auto: true
   }
 end

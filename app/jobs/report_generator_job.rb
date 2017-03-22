@@ -24,7 +24,7 @@ class ReportGeneratorJob < ApplicationJob
 
       report_data = report_data.sort { |b,a| (a[2] + a[3]/10.0) <=> (b[2] + b[3]/10.0) }
 
-      ReportMailer.report(report_data, email, start_date.utc.to_s, end_date.utc.to_s).deliver_later
+      ReportMailer.report(report_data, email, start_date.to_s, end_date.to_s).deliver_later
 
     else
       params_error = [start_date.to_s,end_date.to_s]

@@ -1,0 +1,2 @@
+web: bin/rails server -b $IP_RAILS_SRV -p 3000
+worker: redis-cli flushdb && bundle exec sidekiq -c 5 -v -q mailers -q default
