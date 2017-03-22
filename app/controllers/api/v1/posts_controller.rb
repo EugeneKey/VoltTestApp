@@ -32,7 +32,7 @@ class Api::V1::PostsController < Api::V1::BaseController
     # default value per_page if params per_page not valid
     per_page = 25 unless per_page > 0
 
-    @posts = Post.page(page).per(per_page)
+    @posts = Post.by_published.page(page).per(per_page)
 
     response.headers['Count-Page'] = @posts.total_pages
     response.headers['Count-Record'] = @posts.total_count

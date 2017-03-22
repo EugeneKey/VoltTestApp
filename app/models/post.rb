@@ -1,11 +1,13 @@
 class Post < ApplicationRecord
+  include Reportable
+
   before_validation :valid_published_at
 
   belongs_to :author, class_name: 'User', foreign_key: 'user_id'
   validates :title, :body, :user_id, presence: true
   delegate :nickname, to: :author, prefix: true
 
-  default_scope { order(published_at: :desc) }
+  scope :by_published, -> { order(published_at: :desc) }
 
   private
 

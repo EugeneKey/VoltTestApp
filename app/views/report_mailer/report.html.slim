@@ -1,0 +1,16 @@
+h2
+  | REPORT: Activity statistic for period from #{@start_date} to #{@end_date}
+table
+  thead
+    tr
+      th Nickname
+      th email
+      th Posts count
+      th Comments count
+  tbody
+    - @data.each do |item|
+      tr
+        td = item[0]
+        td = item[1]
+        td = item[2]
+        td = item[3]

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
+  it_behaves_like 'Reportable'
+
   it { is_expected.to belong_to(:author).class_name('User').with_foreign_key('user_id') }
 
   it { is_expected.to validate_presence_of :body }
@@ -37,8 +39,8 @@ RSpec.describe Post, type: :model do
     second = create(:post, published_at: time)
     create(:post, published_at: 1.hours.ago.time)
 
-    expect(second.id).to eq Post.first.id
-    expect(first.id).to eq Post.last.id
+    expect(second.id).to eq Post.by_published.first.id
+    expect(first.id).to eq Post.by_published.last.id
   end
 
 end

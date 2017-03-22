@@ -55,6 +55,13 @@ gem 'aws-sdk', '~> 2.3.0'
 # AJAX file uploads with jQuery
 gem 'remotipart', '~> 1.2'
 
+gem 'sidekiq'
+
+# ASCII table generator
+gem 'terminal-table'
+
+gem 'faker'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
